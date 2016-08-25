@@ -5,6 +5,13 @@
  */
 package com.mycompany.guice.gs.model.card;
 
+import com.mycompany.guice.gs.model.Bank;
+
 public abstract class BankCard {
+
+    private Bank bank;
+    protected String cardHolderName;
+
+
 
 }

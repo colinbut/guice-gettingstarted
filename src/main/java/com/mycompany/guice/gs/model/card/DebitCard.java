@@ -5,5 +5,11 @@
  */
 package com.mycompany.guice.gs.model.card;
 
+import java.util.Date;
+
 public class DebitCard extends BankCard {
+
+    private String cardNumber;
+    private Date expiryDate;
+    private int securityCode;
 }
