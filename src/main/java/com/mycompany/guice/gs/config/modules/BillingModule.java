@@ -6,6 +6,7 @@
 package com.mycompany.guice.gs.config.modules;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Names;
 import com.mycompany.guice.gs.config.annotations.PayPal;
 import com.mycompany.guice.gs.core.payment.CreditCardProcessor;
 import com.mycompany.guice.gs.core.transaction.DatabaseTransactionLog;
@@ -20,6 +21,9 @@ public class BillingModule extends AbstractModule {
 
         // using binding annotations
         bind(CreditCardProcessor.class).annotatedWith(PayPal.class).to(PaypalCreditCardProcessor.class);
+        // using @Named binding annotation
+        bind(CreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(PaypalCreditCardProcessor.class);
+
 
         // linked bindings
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);
