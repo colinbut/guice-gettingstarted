@@ -8,9 +8,10 @@ package com.mycompany.guice.gs.config.modules;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import com.mycompany.guice.gs.config.annotations.PayPal;
-import com.mycompany.guice.gs.core.payment.CreditCardProcessor;
+import com.mycompany.guice.gs.core.payment.CashPaymentProcessor;
+import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.DatabaseTransactionLog;
-import com.mycompany.guice.gs.core.payment.PaypalCreditCardProcessor;
+import com.mycompany.guice.gs.core.payment.CardPaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.MySQLDatabaseTransactionLog;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 
@@ -20,9 +21,14 @@ public class BillingModule extends AbstractModule {
     protected void configure() {
 
         // using binding annotations
-        bind(CreditCardProcessor.class).annotatedWith(PayPal.class).to(PaypalCreditCardProcessor.class);
+        bind(PaymentProcessor.class)
+            .annotatedWith(PayPal.class)
+            .to(CashPaymentProcessor.class); // by default probably take cash from peeps
+
         // using @Named binding annotation
-        bind(CreditCardProcessor.class).annotatedWith(Names.named("Checkout")).to(PaypalCreditCardProcessor.class);
+        bind(PaymentProcessor.class)
+            .annotatedWith(Names.named("CardPaymentProcessor"))
+            .to(CardPaymentProcessor.class);
 
 
         // linked bindings

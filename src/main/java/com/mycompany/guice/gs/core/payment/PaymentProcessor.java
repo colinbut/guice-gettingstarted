@@ -5,6 +5,6 @@
  */
 package com.mycompany.guice.gs.core.payment;
 
-public interface CreditCardProcessor {
+public interface PaymentProcessor {
 
 }

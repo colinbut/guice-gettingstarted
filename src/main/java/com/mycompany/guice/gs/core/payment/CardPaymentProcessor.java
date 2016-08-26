@@ -5,5 +5,5 @@
  */
 package com.mycompany.guice.gs.core.payment;
 
-public class PaypalCreditCardProcessor implements CreditCardProcessor {
+public class CardPaymentProcessor implements PaymentProcessor {
 }
