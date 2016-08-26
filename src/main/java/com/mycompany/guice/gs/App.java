@@ -3,7 +3,7 @@ package com.mycompany.guice.gs;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.mycompany.guice.gs.modules.BillingModule;
+import com.mycompany.guice.gs.config.modules.BillingModule;
 import com.mycompany.guice.gs.service.BillingService;
 
 public class App {
