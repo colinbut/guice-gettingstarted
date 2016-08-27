@@ -6,9 +6,8 @@
 package com.mycompany.guice.gs.config.modules;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.name.Named;
 import com.google.inject.name.Names;
-import com.mycompany.guice.gs.config.annotations.PayPal;
+import com.mycompany.guice.gs.config.annotations.Cash;
 import com.mycompany.guice.gs.core.payment.CashPaymentProcessor;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.DatabaseTransactionLog;
@@ -23,7 +22,7 @@ public class BillingModule extends AbstractModule {
 
         // using binding annotations
         bind(PaymentProcessor.class)
-            .annotatedWith(PayPal.class)
+            .annotatedWith(Cash.class)
             .to(CashPaymentProcessor.class); // by default probably take cash from peeps
 
         // using @Named binding annotation

@@ -6,7 +6,7 @@
 package com.mycompany.guice.gs.service;
 
 import com.google.inject.Inject;
-import com.mycompany.guice.gs.config.annotations.PayPal;
+import com.mycompany.guice.gs.config.annotations.Cash;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 import com.mycompany.guice.gs.model.PizzaOrder;
@@ -19,7 +19,7 @@ public class SimpleBillingServiceImpl implements BillingService {
     private final TransactionLog transactionLog;
 
     @Inject
-    public SimpleBillingServiceImpl(@PayPal PaymentProcessor paymentProcessor, TransactionLog transactionLog) {
+    public SimpleBillingServiceImpl(@Cash PaymentProcessor paymentProcessor, TransactionLog transactionLog) {
         this.paymentProcessor = paymentProcessor;
         this.transactionLog = transactionLog;
     }
