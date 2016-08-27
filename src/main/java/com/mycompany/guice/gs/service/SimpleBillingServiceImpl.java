@@ -9,9 +9,10 @@ import com.google.inject.Inject;
 import com.mycompany.guice.gs.config.annotations.Cash;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
+import com.mycompany.guice.gs.model.OrderItem;
+import com.mycompany.guice.gs.model.PaymentMethod;
 import com.mycompany.guice.gs.model.PizzaOrder;
 import com.mycompany.guice.gs.model.Receipt;
-import com.mycompany.guice.gs.model.card.BankCard;
 
 public class SimpleBillingServiceImpl implements BillingService {
 
@@ -25,7 +26,19 @@ public class SimpleBillingServiceImpl implements BillingService {
     }
 
     @Override
-    public Receipt chargeOrder(PizzaOrder pizzaOrder, BankCard bankCard) {
-        return null;
+    public Receipt chargeOrder(PizzaOrder pizzaOrder, PaymentMethod paymentMethod) {
+
+        if (!(paymentMethod instanceof Cash)) {
+            throw new IllegalStateException("Incorrect payment method passed in");
+        }
+
+        double totalAmount = pizzaOrder.getOrderItems().stream().mapToDouble(OrderItem::getPrice).sum();
+
+        if (paymentProcessor.pay(totalAmount, paymentMethod)) {
+            transactionLog.recordTransaction();
+        }
+
+        Receipt receipt = new Receipt();
+        return receipt;
     }
 }

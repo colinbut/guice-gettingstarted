@@ -5,13 +5,13 @@
  */
 package com.mycompany.guice.gs.service;
 
+import com.mycompany.guice.gs.model.PaymentMethod;
 import com.mycompany.guice.gs.model.PizzaOrder;
 import com.mycompany.guice.gs.model.Receipt;
-import com.mycompany.guice.gs.model.card.BankCard;
 
 
 public interface BillingService {
 
-    Receipt chargeOrder(PizzaOrder pizzaOrder, BankCard bankCard);
+    Receipt chargeOrder(PizzaOrder pizzaOrder, PaymentMethod paymentMethod);
 
 }
