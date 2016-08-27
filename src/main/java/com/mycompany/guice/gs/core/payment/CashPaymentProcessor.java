@@ -5,12 +5,18 @@
  */
 package com.mycompany.guice.gs.core.payment;
 
-import com.mycompany.guice.gs.model.PaymentMethod;
+import com.mycompany.guice.gs.model.payment.Cash;
+import com.mycompany.guice.gs.model.payment.PaymentMethod;
 
 public class CashPaymentProcessor implements PaymentProcessor {
 
     @Override
     public boolean pay(double amountToPay, PaymentMethod paymentMethod) {
-        return false;
+
+        if (!(paymentMethod instanceof Cash)) {
+            throw new IllegalArgumentException("Invalid payment method passed in");
+        }
+
+        return true;
     }
 }

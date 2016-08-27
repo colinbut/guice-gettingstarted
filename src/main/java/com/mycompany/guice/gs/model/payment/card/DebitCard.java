@@ -3,11 +3,11 @@
  * | Copyright © 2016 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.guice.gs.model.card;
+package com.mycompany.guice.gs.model.payment.card;
 
 import java.util.Date;
 
-public class CreditCard extends BankCard {
+public class DebitCard extends BankCard {
 
     private String cardNumber;
     private Date expiryDate;

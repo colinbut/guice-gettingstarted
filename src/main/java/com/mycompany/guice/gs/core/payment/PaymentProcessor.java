@@ -5,7 +5,7 @@
  */
 package com.mycompany.guice.gs.core.payment;
 
-import com.mycompany.guice.gs.model.PaymentMethod;
+import com.mycompany.guice.gs.model.payment.PaymentMethod;
 
 public interface PaymentProcessor {
 

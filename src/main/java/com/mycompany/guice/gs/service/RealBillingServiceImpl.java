@@ -10,7 +10,7 @@ import com.google.inject.name.Named;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 import com.mycompany.guice.gs.model.OrderItem;
-import com.mycompany.guice.gs.model.PaymentMethod;
+import com.mycompany.guice.gs.model.payment.PaymentMethod;
 import com.mycompany.guice.gs.model.PizzaOrder;
 import com.mycompany.guice.gs.model.Receipt;
 

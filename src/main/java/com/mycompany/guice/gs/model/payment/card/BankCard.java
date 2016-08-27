@@ -3,10 +3,10 @@
  * | Copyright © 2016 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.guice.gs.model.card;
+package com.mycompany.guice.gs.model.payment.card;
 
-import com.mycompany.guice.gs.model.Bank;
-import com.mycompany.guice.gs.model.PaymentMethod;
+import com.mycompany.guice.gs.model.payment.Bank;
+import com.mycompany.guice.gs.model.payment.PaymentMethod;
 
 public abstract class BankCard extends PaymentMethod {
 
