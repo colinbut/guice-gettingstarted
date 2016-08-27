@@ -40,7 +40,7 @@ public class RealBillingServiceImpl implements BillingService {
 
         double totalAmount = pizzaOrder.getOrderItems().stream().mapToDouble(OrderItem::getPrice).sum();
 
-
+        paymentProcessor.pay(totalAmount, bankCard);
 
         Receipt receipt = new Receipt();
         return receipt;

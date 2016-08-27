@@ -6,8 +6,9 @@
 package com.mycompany.guice.gs.model.card;
 
 import com.mycompany.guice.gs.model.Bank;
+import com.mycompany.guice.gs.model.PaymentMethod;
 
-public abstract class BankCard {
+public abstract class BankCard extends PaymentMethod {
 
     private Bank bank;
     protected String cardHolderName;

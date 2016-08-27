@@ -6,6 +6,7 @@
 package com.mycompany.guice.gs.config.modules;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.name.Named;
 import com.google.inject.name.Names;
 import com.mycompany.guice.gs.config.annotations.PayPal;
 import com.mycompany.guice.gs.core.payment.CashPaymentProcessor;
@@ -29,6 +30,8 @@ public class BillingModule extends AbstractModule {
         bind(PaymentProcessor.class)
             .annotatedWith(Names.named("CardPaymentProcessor"))
             .to(CardPaymentProcessor.class);
+
+        bind(String.class).annotatedWith(Names.named("VAT")).toInstance("25.0%");
 
 
         // linked bindings

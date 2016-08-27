@@ -3,9 +3,7 @@
  * | Copyright © 2016 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.guice.gs.core.transaction;
+package com.mycompany.guice.gs.model;
 
-public interface TransactionLog {
-
-    void recordTransaction();
+public class Cash extends PaymentMethod {
 }
