@@ -6,14 +6,19 @@
 package com.mycompany.guice.gs.config.modules;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Provides;
 import com.google.inject.name.Names;
 import com.mycompany.guice.gs.config.annotations.CashPayment;
+import com.mycompany.guice.gs.config.annotations.FileTransaction;
 import com.mycompany.guice.gs.core.payment.CashPaymentProcessor;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.DatabaseTransactionLog;
 import com.mycompany.guice.gs.core.payment.CardPaymentProcessor;
+import com.mycompany.guice.gs.core.transaction.FileTransactionLog;
 import com.mycompany.guice.gs.core.transaction.MySQLDatabaseTransactionLog;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
+
+import java.io.File;
 
 public class BillingModule extends AbstractModule {
 
@@ -37,5 +42,13 @@ public class BillingModule extends AbstractModule {
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);
         bind(DatabaseTransactionLog.class).to(MySQLDatabaseTransactionLog.class); //chaining linked bindings
 
+    }
+
+    @Provides
+    @FileTransaction
+    TransactionLog provideFileTransactionLog() {
+        FileTransactionLog fileTransactionLog = new FileTransactionLog();
+        fileTransactionLog.setTransactionFile(new File("transactionfile.log"));
+        return fileTransactionLog;
     }
 }

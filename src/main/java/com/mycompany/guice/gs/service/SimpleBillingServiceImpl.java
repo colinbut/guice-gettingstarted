@@ -7,6 +7,7 @@ package com.mycompany.guice.gs.service;
 
 import com.google.inject.Inject;
 import com.mycompany.guice.gs.config.annotations.CashPayment;
+import com.mycompany.guice.gs.config.annotations.FileTransaction;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 import com.mycompany.guice.gs.model.OrderItem;
@@ -20,7 +21,8 @@ public class SimpleBillingServiceImpl implements BillingService {
     private final TransactionLog transactionLog;
 
     @Inject
-    public SimpleBillingServiceImpl(@CashPayment PaymentProcessor paymentProcessor, TransactionLog transactionLog) {
+    public SimpleBillingServiceImpl(@CashPayment PaymentProcessor paymentProcessor,
+                                    @FileTransaction TransactionLog transactionLog) {
         this.paymentProcessor = paymentProcessor;
         this.transactionLog = transactionLog;
     }
