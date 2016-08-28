@@ -11,6 +11,7 @@ import com.mycompany.guice.gs.config.annotations.FileTransaction;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 import com.mycompany.guice.gs.model.OrderItem;
+import com.mycompany.guice.gs.model.payment.Cash;
 import com.mycompany.guice.gs.model.payment.PaymentMethod;
 import com.mycompany.guice.gs.model.PizzaOrder;
 import com.mycompany.guice.gs.model.Receipt;
@@ -38,7 +39,7 @@ public class SimpleBillingServiceImpl implements BillingService {
 
         logger.info("Charging order");
 
-        if (!(paymentMethod instanceof CashPayment)) {
+        if (!(paymentMethod instanceof Cash)) {
             throw new IllegalStateException("Incorrect payment method passed in");
         }
 
