@@ -23,13 +23,13 @@ public class CashPaymentProcessor implements PaymentProcessor {
     @Override
     public boolean pay(double amountToPay, PaymentMethod paymentMethod) {
 
-        logger.info("Paying");
+        logger.info("Processing payment");
 
         if (!(paymentMethod instanceof Cash)) {
             throw new IllegalArgumentException("Invalid payment method passed in");
         }
 
-        logger.info("Paid");
+        logger.info("Payment made successfully");
 
         return true;
     }

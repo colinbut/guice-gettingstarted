@@ -37,7 +37,8 @@ public class BillingModule extends AbstractModule {
             .annotatedWith(Names.named("CardPaymentProcessor"))
             .to(CardPaymentProcessor.class);
 
-        bind(String.class).annotatedWith(Names.named("VAT")).toInstance("25.0%");
+        // instance bindings
+        bind(Double.class).annotatedWith(Names.named("VAT")).toInstance(25.0); // 25% vat yeah?
 
         // linked bindings
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);

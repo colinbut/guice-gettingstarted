@@ -21,7 +21,7 @@ public class RealBillingServiceImpl implements BillingService {
     private final TransactionLog transactionLog;
 
     @Named("VAT")
-    private String vat;
+    private Double vat;
 
     /**
      * Constructor Injection
