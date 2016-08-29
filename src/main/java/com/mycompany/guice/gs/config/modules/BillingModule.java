@@ -39,6 +39,7 @@ public class BillingModule extends AbstractModule {
 
         // instance bindings
         bind(Double.class).annotatedWith(Names.named("VAT")).toInstance(25.0); // 25% vat yeah?
+        bind(Double.class).annotatedWith(Names.named("SERVICE_CHARGE")).toInstance(12.5); // 12.5% service charge yeah?
 
         // linked bindings
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);

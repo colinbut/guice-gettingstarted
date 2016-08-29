@@ -16,6 +16,7 @@ import java.util.List;
 public final class OrderCostCalculator {
 
     private Double vat;
+    private Double serviceCharge;
 
     /**
      * Setter Injection in example
@@ -27,6 +28,11 @@ public final class OrderCostCalculator {
         this.vat = vat;
     }
 
+    @Inject
+    public void setServiceCharge(@Named("SERVICE_CHARGE") Double serviceCharge) {
+        this.serviceCharge = serviceCharge;
+    }
+
 
     public double calculate(List<OrderItem> orders) {
         // order total
@@ -34,6 +40,9 @@ public final class OrderCostCalculator {
 
         // add VAT
         totalAmount += totalAmount * (vat / 100);
+
+        // add service charge :)
+        totalAmount += totalAmount * (serviceCharge / 100);
 
         return totalAmount;
     }
