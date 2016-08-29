@@ -8,6 +8,7 @@ package com.mycompany.guice.gs.service;
 import com.google.inject.Inject;
 import com.mycompany.guice.gs.config.annotations.CashPayment;
 import com.mycompany.guice.gs.config.annotations.FileTransaction;
+import com.mycompany.guice.gs.core.OrderCostCalculator;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.TransactionLog;
 import com.mycompany.guice.gs.model.OrderItem;
@@ -24,14 +25,17 @@ public class SimpleBillingServiceImpl implements BillingService {
 
     private final PaymentProcessor paymentProcessor;
     private final TransactionLog transactionLog;
+    private final OrderCostCalculator orderCostCalculator;
 
     @Inject
     public SimpleBillingServiceImpl(@CashPayment PaymentProcessor paymentProcessor,
                                     @FileTransaction TransactionLog transactionLog,
+                                    OrderCostCalculator orderCostCalculator,
                                     Logger logger) {
         this.paymentProcessor = paymentProcessor;
         this.transactionLog = transactionLog;
         this.logger = logger;
+        this.orderCostCalculator = orderCostCalculator;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class SimpleBillingServiceImpl implements BillingService {
         }
 
         logger.fine("Calculating total amount to be paid");
-        double totalAmount = pizzaOrder.getOrderItems().stream().mapToDouble(OrderItem::getPrice).sum();
+        double totalAmount = orderCostCalculator.calculate(pizzaOrder.getOrderItems());
 
         logger.info("Paying " + totalAmount + " with " + paymentMethod);
         if (paymentProcessor.pay(totalAmount, paymentMethod)) {

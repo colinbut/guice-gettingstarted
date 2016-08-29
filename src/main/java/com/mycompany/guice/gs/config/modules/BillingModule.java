@@ -7,9 +7,11 @@ package com.mycompany.guice.gs.config.modules;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.mycompany.guice.gs.config.annotations.CashPayment;
 import com.mycompany.guice.gs.config.annotations.FileTransaction;
+import com.mycompany.guice.gs.core.OrderCostCalculator;
 import com.mycompany.guice.gs.core.payment.CashPaymentProcessor;
 import com.mycompany.guice.gs.core.payment.PaymentProcessor;
 import com.mycompany.guice.gs.core.transaction.DatabaseTransactionLog;
@@ -37,10 +39,12 @@ public class BillingModule extends AbstractModule {
 
         bind(String.class).annotatedWith(Names.named("VAT")).toInstance("25.0%");
 
-
         // linked bindings
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);
         bind(DatabaseTransactionLog.class).to(MySQLDatabaseTransactionLog.class); //chaining linked bindings
+
+        // untargeted bindings
+        bind(OrderCostCalculator.class).in(Singleton.class); // bind concrete classes
 
     }
 
