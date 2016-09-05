@@ -5,6 +5,9 @@
  */
 package com.mycompany.guice.gs.model.payment.card;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.Date;
 
 public class CreditCard extends BankCard {
@@ -35,5 +38,33 @@ public class CreditCard extends BankCard {
 
     public void setSecurityCode(int securityCode) {
         this.securityCode = securityCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CreditCard that = (CreditCard) o;
+
+        return new EqualsBuilder()
+            .append(securityCode, that.securityCode)
+            .append(cardNumber, that.cardNumber)
+            .append(expiryDate, that.expiryDate)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(cardNumber)
+            .append(expiryDate)
+            .append(securityCode)
+            .toHashCode();
     }
 }

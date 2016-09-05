@@ -5,6 +5,9 @@
  */
 package com.mycompany.guice.gs.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +25,29 @@ public class PizzaOrder {
 
     public List<OrderItem> getOrderItems() {
         return new ArrayList<>(orderItems);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        PizzaOrder that = (PizzaOrder) o;
+
+        return new EqualsBuilder()
+            .append(orderItems, that.orderItems)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(orderItems)
+            .toHashCode();
     }
 }

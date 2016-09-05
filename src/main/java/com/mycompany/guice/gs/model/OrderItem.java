@@ -5,6 +5,9 @@
  */
 package com.mycompany.guice.gs.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class OrderItem {
 
     private String name;
@@ -34,4 +37,34 @@ public class OrderItem {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        OrderItem orderItem = (OrderItem) o;
+
+        return new EqualsBuilder()
+            .append(price, orderItem.price)
+            .append(name, orderItem.name)
+            .append(description, orderItem.description)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(name)
+            .append(description)
+            .append(price)
+            .toHashCode();
+    }
+
+
 }

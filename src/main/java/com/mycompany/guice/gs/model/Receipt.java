@@ -5,6 +5,9 @@
  */
 package com.mycompany.guice.gs.model;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Receipt {
 
     private PizzaOrder pizzaOrder;
@@ -51,5 +54,37 @@ public class Receipt {
 
     public void setVatAmount(double vatAmount) {
         this.vatAmount = vatAmount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Receipt receipt = (Receipt) o;
+
+        return new EqualsBuilder()
+            .append(vatAmount, receipt.vatAmount)
+            .append(totalAmount, receipt.totalAmount)
+            .append(paidAmount, receipt.paidAmount)
+            .append(changeBack, receipt.changeBack)
+            .append(pizzaOrder, receipt.pizzaOrder)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(pizzaOrder)
+            .append(vatAmount)
+            .append(totalAmount)
+            .append(paidAmount)
+            .append(changeBack)
+            .toHashCode();
     }
 }
