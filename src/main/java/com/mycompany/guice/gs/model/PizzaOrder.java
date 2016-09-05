@@ -7,6 +7,7 @@ package com.mycompany.guice.gs.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,5 +50,12 @@ public class PizzaOrder {
         return new HashCodeBuilder(17, 37)
             .append(orderItems)
             .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("orderItems", orderItems)
+            .toString();
     }
 }

@@ -7,6 +7,7 @@ package com.mycompany.guice.gs.model.payment.card;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Date;
 
@@ -66,5 +67,14 @@ public class CreditCard extends BankCard {
             .append(expiryDate)
             .append(securityCode)
             .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("cardNumber", cardNumber)
+            .append("expiryDate", expiryDate)
+            .append("securityCode", securityCode)
+            .toString();
     }
 }

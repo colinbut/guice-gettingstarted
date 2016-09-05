@@ -7,6 +7,7 @@ package com.mycompany.guice.gs.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class OrderItem {
 
@@ -66,5 +67,12 @@ public class OrderItem {
             .toHashCode();
     }
 
-
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("description", description)
+            .append("name", name)
+            .append("price", price)
+            .toString();
+    }
 }

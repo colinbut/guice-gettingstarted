@@ -9,6 +9,7 @@ import com.mycompany.guice.gs.model.payment.Bank;
 import com.mycompany.guice.gs.model.payment.PaymentMethod;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public abstract class BankCard extends PaymentMethod {
 
@@ -55,5 +56,13 @@ public abstract class BankCard extends PaymentMethod {
             .append(bank)
             .append(cardHolderName)
             .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("bank", bank)
+            .append("cardHolderName", cardHolderName)
+            .toString();
     }
 }

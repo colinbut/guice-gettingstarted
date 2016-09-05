@@ -7,6 +7,7 @@ package com.mycompany.guice.gs.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Receipt {
 
@@ -86,5 +87,16 @@ public class Receipt {
             .append(paidAmount)
             .append(changeBack)
             .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+            .append("changeBack", changeBack)
+            .append("pizzaOrder", pizzaOrder)
+            .append("vatAmount", vatAmount)
+            .append("totalAmount", totalAmount)
+            .append("paidAmount", paidAmount)
+            .toString();
     }
 }
