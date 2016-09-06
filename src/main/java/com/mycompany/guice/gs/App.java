@@ -3,6 +3,7 @@ package com.mycompany.guice.gs;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.persist.jpa.JpaPersistModule;
 import com.mycompany.guice.gs.config.modules.BillingModule;
 import com.mycompany.guice.gs.model.OrderItem;
 import com.mycompany.guice.gs.model.PizzaOrder;
@@ -14,7 +15,7 @@ import com.mycompany.guice.gs.service.SimpleBillingServiceImpl;
 public class App {
 
     public static void main( String[] args ) {
-        Injector injector = Guice.createInjector(new BillingModule());
+        Injector injector = Guice.createInjector(new BillingModule(), new JpaPersistModule("myJPAPersistenceUnit"));
         BillingService billingService = injector.getInstance(SimpleBillingServiceImpl.class);
 
         PizzaOrder pizzaOrder = new PizzaOrder();
