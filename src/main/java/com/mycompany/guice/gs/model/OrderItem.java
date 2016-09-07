@@ -9,12 +9,33 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "order_item")
 public class OrderItem {
 
+    private int id;
     private String name;
     private String description;
     private double price;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Column(name = "description", nullable = false)
     public String getDescription() {
         return description;
     }
@@ -23,6 +44,7 @@ public class OrderItem {
         this.description = description;
     }
 
+    @Column(name = "name", nullable = false)
     public String getName() {
         return name;
     }
@@ -31,6 +53,7 @@ public class OrderItem {
         this.name = name;
     }
 
+    @Column(name = "price", nullable = false)
     public double getPrice() {
         return price;
     }
@@ -75,4 +98,5 @@ public class OrderItem {
             .append("price", price)
             .toString();
     }
+
 }
